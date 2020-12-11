@@ -5,7 +5,7 @@ import { BootstrapVue } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-Vue.use(VueMqtt, 'ws://termostaatti.duckdns.org:12777/ws', {clientId: 'WebClient-' + parseInt(Math.random() * 100000)})
+Vue.use(VueMqtt, 'ws://termostaatti.duckdns.org:12778/ws', {clientId: 'WebClient-' + parseInt(Math.random() * 100000)})
 Vue.use(BootstrapVue)
 
 Vue.config.productionTip = false
