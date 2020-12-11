@@ -18,9 +18,13 @@
         {{targe_temp}} °C
       </div>
     </div>
-    <div class="label heater-text" v-if="heating_on > 0">
-      <b>Heater ON</b>
-      <img class="heater_icon" src="../assets/heater.png">
+    <div class="row">
+      <div class="col "></div>
+      <div class="col-6 status-bar">
+        <img class="status-icon heater-icon" src="../assets/heater.png" v-if="heating_on > 0">
+        <img class="status-icon" src="../assets/controls.png" v-if="override_on > 0">
+      </div>
+      <div class="col "></div>
     </div>
   </div>
 </template>
@@ -32,6 +36,7 @@ export default {
       targe_temp: '',
       current_temp: '',
       heating_on: 0,
+      override_on: 0,
     }
   },
   mqtt: {
@@ -47,6 +52,9 @@ export default {
     },
     'thermostat/heaterOn' (data) {
       this.heating_on = JSON.parse(data).value;
+    },
+    'thermostat/overrideOn' (data) {
+      this.override_on = JSON.parse(data).value;
     }
   }
 }
@@ -67,14 +75,15 @@ export default {
   width: 25px;
   margin-right: 10px;
 }
-.heater_icon {
+.status-icon {
   width: 33px;
-  margin-left: 12px;
-  margin-bottom: 10px;
+  margin-left: 7px;
+  margin-right: 7px;
+  margin-top: 3px;
 }
-.heater-text {
+.status-bar {
   margin-top: 30px;
-  color: rgb(207, 56, 56);
-  text-align: center;
+  background-color: rgba(234, 240, 241, 0.356);
+  min-height: 40px;
 }
 </style>
